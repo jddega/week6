@@ -13,7 +13,7 @@ podTemplate(containers: [
             echo "I am the ${env.BRANCH_NAME} branch"
           }
           stage('Code coverage') {
-            echo "My CC branch is: ${env.BRANCH_NAME}"
+            echo "My CC branch is: ${env.GIT_BRANCH}"
             if (env.BRANCH_NAME == "feature") {
               echo "I am the ${env.BRANCH_NAME} branch"
             }
