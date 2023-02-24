@@ -10,4 +10,8 @@ Token used
 another update
 add credential in Jenkins jobs config
 one more updated
+<<<<<<< HEAD
 one more
+=======
+one more time
+>>>>>>> 3bb4c69c2e2d08c69280dbd0ede52c8d4b9286d6
