@@ -18,7 +18,7 @@ podTemplate(containers: [
             if (env.BRANCH_NAME == "main") {
               echo "I am the ${env.BRANCH_NAME} branch"
 	      sh '''
-             cd sample1
+             cd sample1/
              chmod +x gradlew '''
             }
 	  stage('Code coverage') {
