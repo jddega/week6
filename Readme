@@ -9,5 +9,14 @@ Token used
 >>>>>>> d292fb3a576a929ca513bac63e7def452e738f42
 another update
 add credential in Jenkins jobs config
+<<<<<<< HEAD
 one more update
 V17 pull request
+=======
+one more updated
+<<<<<<< HEAD
+one more
+=======
+one more time
+>>>>>>> 3bb4c69c2e2d08c69280dbd0ede52c8d4b9286d6
+>>>>>>> PR
