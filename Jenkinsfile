@@ -13,9 +13,7 @@ pipeline {
           stage("Unit test") {
                when {branch "main"}
                steps {
-                    sh '''
-                    chmod +x gradlew
-                    ./gradlew test'''
+                    sh "./gradlew test"
                }
           }
           stage("Code coverage") {
