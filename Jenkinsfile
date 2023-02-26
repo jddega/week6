@@ -55,4 +55,5 @@ podTemplate(containers: [
       }   
     }
   }
+ }
 }
