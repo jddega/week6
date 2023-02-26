@@ -5,13 +5,13 @@ pipeline {
      }
      stages {
           stage("Compile") {
-               when {branch "main"}
+               when {branch "feature"}
                steps {
                     sh "./gradlew compileJava"
                }
           }
           stage("Unit test") {
-               when {branch "main"}
+               when {branch "feature"}
                steps {
                     sh "./gradlew test"
                }
@@ -30,21 +30,21 @@ pipeline {
                }
           }
           stage("Package") {
-               when {branch "PR"}
+               when {branch "feature"}
                steps {
                     sh "./gradlew build"
                }
           }
 
           stage("Docker build") {
-               when {branch "PR"}
+               when {branch "feature"}
                steps {
                     sh "docker build -t leszko/calculator:${BUILD_TIMESTAMP} ."
                }
           }
 
           stage("Docker login") {
-               when {branch "PR"}
+               when {branch "feature"}
                steps {
                     withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'docker-hub-credentials',
                                usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD']]) {
@@ -54,7 +54,7 @@ pipeline {
           }
 
           stage("Docker push") {
-               when {branch "PR"}
+               when {branch "feature"}
                steps {
                     sh "docker push leszko/calculator:${BUILD_TIMESTAMP}"
                }
@@ -68,7 +68,7 @@ pipeline {
           }
           
           stage("Deploy to staging") {
-               when {branch "PR"}
+               when {branch "feature"}
                steps {
                     sh "kubectl config use-context staging"
                     sh "kubectl apply -f hazelcast.yaml"
@@ -85,7 +85,7 @@ pipeline {
           }
 
           stage("Release") {
-               when  {branch "PR"}
+               when  {branch "feature"}
                steps {
                     sh "kubectl config use-context production"
                     sh "kubectl apply -f hazelcast.yaml"
