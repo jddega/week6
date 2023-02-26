@@ -37,7 +37,7 @@ pipeline {
           }
 
           stage("Docker build") {
-               when {branch "PR"}
+               when {branch "feature"}
                steps {
                     sh "docker build -t leszko/calculator:${BUILD_TIMESTAMP} ."
                }
@@ -54,14 +54,14 @@ pipeline {
           }
 
           stage("Docker push") {
-               when {branch "PR"}
+               when {branch "feature"}
                steps {
                     sh "docker push leszko/calculator:${BUILD_TIMESTAMP}"
                }
           }
 
           stage("Update version") {
-               when {branch "PR"}
+               when {branch "feature"}
                steps {
                     sh "sed  -i 's/{{VERSION}}/${BUILD_TIMESTAMP}/g' calculator.yaml"
                }
