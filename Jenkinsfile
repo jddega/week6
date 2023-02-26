@@ -5,13 +5,13 @@ pipeline {
      }
      stages {
           stage("Compile") {
-               when {branch "main"}
+               when {branch "PR"}
                steps {
                     sh "./gradlew compileJava"
                }
           }
           stage("Unit test") {
-               when {branch "main"}
+               when {branch "PR"}
                steps {
                     sh "./gradlew test"
                }
@@ -24,7 +24,7 @@ pipeline {
                }
           }
           stage("Static code analysis") {
-               when {branch "feature"}
+               when {branch "PR"}
                steps {
                     sh "./gradlew checkstyleMain"
                }
@@ -61,7 +61,7 @@ pipeline {
           }
 
           stage("Update version") {
-               when {branch "feature"}
+               when {branch "PR"}
                steps {
                     sh "sed  -i 's/{{VERSION}}/${BUILD_TIMESTAMP}/g' calculator.yaml"
                }
@@ -77,7 +77,7 @@ pipeline {
           }
 
           stage("Acceptance test") {
-               when {branch "feature"}
+               when {branch "PR"}
                steps {
                     sleep 60
                     sh "chmod +x acceptance-test.sh && ./acceptance-test.sh"
@@ -93,7 +93,7 @@ pipeline {
                }
           }
           stage("Smoke test") {
-               when {branch "feature"}
+               when {branch "PR"}
               steps {
                   sleep 60
                   sh "chmod +x smoke-test.sh && ./smoke-test.sh"
