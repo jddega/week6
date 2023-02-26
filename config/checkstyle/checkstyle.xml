@@ -4,6 +4,7 @@
      "http://www.puppycrawl.com/dtds/configuration_1_2.dtd">
 
 <module name="Checker">
+     <module name="JavadocPackage"/>
      <module name="TreeWalker">
           <module name="JavadocType">
                <property name="scope" value="public"/>
